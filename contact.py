@@ -6,6 +6,7 @@ from flask.ext.babel import gettext as _
 from flask.ext.wtf import Form
 from wtforms import TextField, TextAreaField, validators
 from flask.ext.mail import Mail, Message
+from galatea.tryton import tryton
 
 contact = Blueprint('contact', __name__, template_folder='templates')
 
@@ -47,6 +48,7 @@ def send_email(data):
     mail.send(msg)
 
 @contact.route("/", methods=["GET", "POST"], endpoint="contact")
+@tryton.transaction()
 def contact_details(lang):
     form = ContactForm()
     if form.validate_on_submit():
