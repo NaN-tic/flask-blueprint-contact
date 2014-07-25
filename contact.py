@@ -59,7 +59,7 @@ def contact_details(lang):
             'description': request.form.get('description'),
             }
         send_email(data)
-        flash(_('Your comment was submitted and will be responded to as soon ' \
+        flash(_('Your comment was submitted and will be answered to as soon ' \
             'as possible. Thank you for contacting us.'))
         form.reset()
 
