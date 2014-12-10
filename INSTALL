@@ -12,7 +12,7 @@ Installation
 ------------
 
 Once you've downloaded and unpacked the flask-galatea-contact source release,
-copy galatea-cms directory in main flask app and rename to cms.
+copy galatea-contact directory in main flask app and rename to contact.
 
 Edit your App flask and register a new blueprint:
 
