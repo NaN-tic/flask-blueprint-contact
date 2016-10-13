@@ -2,10 +2,10 @@
 #The COPYRIGHT file at the top level of this repository contains 
 #the full copyright notices and license terms.
 from flask import Blueprint, request, render_template, flash, current_app
-from flask.ext.babel import gettext as _
-from flask.ext.wtf import Form
+from flask_babel import gettext as _
+from flask_wtf import Form
+from flask_mail import Mail, Message
 from wtforms import TextField, TextAreaField, validators
-from flask.ext.mail import Mail, Message
 from galatea.tryton import tryton
 
 contact = Blueprint('contact', __name__, template_folder='templates')
