@@ -1,8 +1,8 @@
 #This file is part contact blueprint for Flask.
-#The COPYRIGHT file at the top level of this repository contains 
+#The COPYRIGHT file at the top level of this repository contains
 #the full copyright notices and license terms.
 from flask import Blueprint, request, render_template, flash, current_app
-from flask_babel import gettext as _
+from flask_babel import lazy_gettext
 from flask_wtf import Form
 from flask_mail import Mail, Message
 from wtforms import TextField, TextAreaField, validators
@@ -13,10 +13,10 @@ contact = Blueprint('contact', __name__, template_folder='templates')
 
 class ContactForm(Form):
     "Contact form"
-    name = TextField(_('Name'), [validators.Required()])
-    email = TextField(_('Email'), [validators.Required(), validators.Email()])
-    phone = TextField(_('Phone'))
-    description = TextAreaField(_('Description'), [validators.Required()])
+    name = TextField(lazy_gettext('Name'), [validators.Required()])
+    email = TextField(lazy_gettext('Email'), [validators.Required(), validators.Email()])
+    phone = TextField(lazy_gettext('Phone'))
+    description = TextAreaField(lazy_gettext('Description'), [validators.Required()])
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
