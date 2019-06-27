@@ -13,10 +13,10 @@ contact = Blueprint('contact', __name__, template_folder='templates')
 
 class ContactForm(Form):
     "Contact form"
-    name = TextField(lazy_gettext('Name'), [validators.Required()])
-    email = TextField(lazy_gettext('Email'), [validators.Required(), validators.Email()])
+    name = TextField(lazy_gettext('Name'), [validators.DataRequired()])
+    email = TextField(lazy_gettext('Email'), [validators.DataRequired(), validators.Email()])
     phone = TextField(lazy_gettext('Phone'))
-    description = TextAreaField(lazy_gettext('Description'), [validators.Required()])
+    description = TextAreaField(lazy_gettext('Description'), [validators.DataRequired()])
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
