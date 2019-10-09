@@ -30,6 +30,23 @@ class ContactForm(Form):
     def reset(self):
         self.description.data = ''
 
+
+class Contact(object):
+    '''
+    This object is used to hold the settings used for contact configuration.
+    '''
+    def __init__(self, app=None):
+        self.contact_form = ContactForm
+
+        if app is not None:
+            self.init_app(app)
+
+    def init_app(self, app):
+        if not hasattr(app, 'extensions'):
+            app.extensions = {}
+        app.extensions['Contact'] = self
+
+
 def send_email(data):
     """
     Send an contact email
@@ -50,7 +67,7 @@ def send_email(data):
 @contact.route("/", methods=["GET", "POST"], endpoint="contact")
 @tryton.transaction()
 def contact_details(lang):
-    form = ContactForm()
+    form = current_app.extensions['Contact'].contact_form()
     if form.validate_on_submit():
         data = {
             'name': request.form.get('name'),
