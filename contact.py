@@ -5,7 +5,7 @@ from flask import Blueprint, request, render_template, flash, current_app
 from flask_babel import gettext as _, lazy_gettext
 from flask_wtf import Form
 from flask_mail import Mail, Message
-from wtforms import TextField, TextAreaField, validators
+from wtforms import StringField, TextAreaField, validators
 from galatea.tryton import tryton
 
 contact = Blueprint('contact', __name__, template_folder='templates')
@@ -13,9 +13,9 @@ contact = Blueprint('contact', __name__, template_folder='templates')
 
 class ContactForm(Form):
     "Contact form"
-    name = TextField(lazy_gettext('Name'), [validators.DataRequired()])
-    email = TextField(lazy_gettext('Email'), [validators.DataRequired(), validators.Email()])
-    phone = TextField(lazy_gettext('Phone'))
+    name = StringField(lazy_gettext('Name'), [validators.DataRequired()])
+    email = StringField(lazy_gettext('Email'), [validators.DataRequired(), validators.Email()])
+    phone = StringField(lazy_gettext('Phone'))
     description = TextAreaField(lazy_gettext('Description'), [validators.DataRequired()])
 
     def __init__(self, *args, **kwargs):
